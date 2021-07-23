@@ -114,7 +114,7 @@ extern globals g_globals;
 #define REGQUERYVALUEXA /*RegQueryValueExA*/XoredStr<0x73,17,0xFBA17407>("\x21\x11\x12\x27\x02\x1D\x0B\x03\x2D\x1D\x11\x0B\x1A\xC5\xF9\xC3"+0xFBA17407).s
 #define REGCLOSEKEY /*RegCloseKey*/XoredStr<0xDE,12,0xB6EF6E90>("\x8C\xBA\x87\xA2\x8E\x8C\x97\x80\xAD\x82\x91"+0xB6EF6E90).s
 
-#define REGPATH xorstr_("SOFTWARE\\Sakura\\auth")
+#define REGPATH xorstr_("SOFTWARE\\Nullus\\auth")
 #define logintext /*Login: */XoredStr<0x34,8,0xBC8584DB>("\x78\x5A\x51\x5E\x56\x03\x1A"+0xBC8584DB).s
 #define passwordtext /*Password: */XoredStr<0xE7,11,0xC9105349>("\xB7\x89\x9A\x99\x9C\x83\x9F\x8A\xD5\xD0"+0xC9105349).s
 #define LOGIN /*login*/XoredStr<0x8A,6,0x28723192>("\xE6\xE4\xEB\xE4\xE0"+0x28723192).s

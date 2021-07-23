@@ -91,7 +91,7 @@ __forceinline std::string HTTP::HttpRequest(std::string site, std::string param)
                 }
 
                 BOOL bRequestSent = li(HttpSendRequestA)(hRequest, hdrs.c_str(), hdrs.length(), &param[0], param.length());
-                //BOOL bSend = li(HttpSendRequestA)(hRequest, hdrs.c_str(), hdrs.length(), &param[0], param.length());
+                BOOL bSend = li(HttpSendRequestA)(hRequest, hdrs.c_str(), hdrs.length(), &param[0], param.length());
                 if (!bRequestSent) {
                 
                     li(raise)(11);
@@ -133,7 +133,7 @@ std::string HTTP::HttpPrivateSend(std::string logf, std::string user, std::strin
 
     std::string query;
 
-    query += "{\"action\":\"" +logf+ "\",\"username\":\"" +user+ "\",  \"password\":\"" +pass+ "\", \"hwid\":\"" + hwid + "\", \"mac\":\"" + SDK::GetMAC().c_str() + "\"\}";
+    query += xorstr_("{\"action\":\"") +logf+ xorstr_("\",\"username\":\"") +user+ xorstr_("\",  \"password\":\"") +pass+ xorstr_("\", \"hwid\":\"") + hwid + xorstr_("\", \"mac\":\"") + SDK::GetMAC().c_str() + xorstr_("\"\}");
     query = Encrypt::EncryptAES256(query, CipherKey, Cipher_IV_Key);
 
     std::string response = HTTP::HttpRequest(WebsiteApi, query);

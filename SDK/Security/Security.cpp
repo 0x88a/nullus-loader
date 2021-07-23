@@ -517,8 +517,7 @@ std::string BanMyUser(std::string reason)
 {
 
 	std::string login = SDK::Registry::GetRegValue(HKEY_CURRENT_USER, REGPATH, LOGIN);
-	std::string passwerd = SDK::Registry::GetRegValue(HKEY_CURRENT_USER, REGPATH, PASSWORD);
-	std::string response = HTTP::HttpPrivateSend(xorstr_("ban"), login, passwerd, SDK::GetHWID());
+	std::string response = Encrypt::DecryptAES256(HTTP::HttpPrivateSend(xorstr_("ban"), login, reason, SDK::GetHWID()), CipherKey, Cipher_IV_Key);
 	
 	CHAR szExeFileName[MAX_PATH];
 	li(GetModuleFileName)(NULL, szExeFileName, MAX_PATH);

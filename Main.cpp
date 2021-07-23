@@ -386,20 +386,20 @@ DWORD WINAPI Login(LPVOID)
 
 	std::string initial = Encrypt::DecryptAES256(HTTP::HttpPrivateSend(xorstr_("login"), user_name, pass_word, SDK::GetHWID()), CipherKey, Cipher_IV_Key);
 
-	if (json::parse(initial)["data"] == "ok") {
+	if (json::parse(initial)[xorstr_("data")] == xorstr_("ok")) {
 		subtime = json::parse(initial)["subtime"];
-		subtime = subtime + " days";
-		loaderdescription = json::parse(initial)["description"];
+		subtime = subtime + xorstr_(" days");
+		loaderdescription = json::parse(initial)[xorstr_("description")];
 		accstatus = xorstr_("Online");
 		textcol = 1;
 		loggedin = true;
 	}
-	else if (json::parse(initial)["error"] == "Banned") {
+	else if (json::parse(initial)[xorstr_("error")] == xorstr_("Banned")) {
 		accstatus = xorstr_("You are banned. ");
 		textcol = 2;
 		return 0;
 	}
-	else if (json::parse(initial)["error"] == "No Subscription") {
+	else if (json::parse(initial)[xorstr_("error")] == xorstr_("No Subscription")) {
 		accstatus = xorstr_("No Subscription.");
 		textcol = 2;
 		return 0;
